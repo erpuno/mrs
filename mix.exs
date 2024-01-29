@@ -13,7 +13,7 @@ defmodule MRS.Mixfile do
 
   def application do
     [ mod: { MRS.Application, [] },
-      applications: [ :jsone, :logger, :inets, :ssl, :crypto ]
+      extra_applications: [ :jsone, :logger, :inets, :ssl, :crypto ]
     ]
   end
 
@@ -29,7 +29,7 @@ defmodule MRS.Mixfile do
 
   def deps do
     [
-      {:ex_doc, "~> 0.11", only: :dev},
+      {:ex_doc, "~> 0.21", only: :dev},
       {:jsone, "~> 1.5.1"}
     ]
   end

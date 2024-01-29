@@ -1,6 +1,6 @@
 # MRS: Medical Registry System
 
-Online sync with https://registry.dec.gov.ua/api/docs
+Online Sync with https://registry.dec.gov.ua/api/docs
 
 ## Features
 
