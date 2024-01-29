@@ -2,6 +2,7 @@ defmodule MRS.Application do
   use Application
 
   def loadDEC() do
+      :filelib.ensure_dir("priv/")
       spawn(fn ->
         MRS.Data.convertATC()
         MRS.Data.convertINN()
