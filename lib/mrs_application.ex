@@ -16,7 +16,10 @@ defmodule MRS.Application do
       children = [ ]
       opts = [strategy: :one_for_one, name: App.Supervisor]
       :io.format "MRS Medical Registry System Client [https://registry.dec.gov.ua/api/docs].~n"
-      loadDEC()
+      case :application.get_env(:mrs, :load_on_start, false) do
+           true -> loadDEC()
+           false -> :skip
+      end
       Supervisor.start_link(children, opts)
   end
 end
