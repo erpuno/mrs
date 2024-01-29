@@ -1,5 +1,7 @@
 # MRS: Medical Registry System
 
+[![Hex pm](http://img.shields.io/hexpm/v/mrs.svg?style=flat&x=1)](https://hex.pm/packages/mrs)
+
 Online Sync with https://registry.dec.gov.ua/api/docs
 
 ## Features
