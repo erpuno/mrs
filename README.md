@@ -8,7 +8,7 @@ Online Sync with https://registry.dec.gov.ua/api/docs
 
 * Update DEC cache tables
 * Save intermediary results into CSV
-* Reconcile with internal PostgreSQL tables
+* Reconcile with external PostgreSQL tables
 
 ### Setup
 
