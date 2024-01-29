@@ -1,4 +1,4 @@
-# MRS: Medical Registry System
+# MRS: Medical Registry Sync
 
 [![Hex pm](http://img.shields.io/hexpm/v/mrs.svg?style=flat&x=1)](https://hex.pm/packages/mrs)
 
