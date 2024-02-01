@@ -6,6 +6,7 @@ defmodule MRS.Data do
   #  "#{a}: Map.get(sku, \"#{a}\", []),\n" end, Map.keys hd(sku))]
 
   def fix(:null), do: []
+#  def fix([o]) when is_map(o), do: :lists.map(fn x -> Map.get(o,x,[]) end, Map.keys(o))
   def fix(x), do: x
 
   def readSKU(sku) do
@@ -117,9 +118,8 @@ defmodule MRS.Data do
         marketing_status: Map.get(reg, "marketing_status", []),
         atc_codes: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "atc_code",[]) ; '#{code}' end, fix(Map.get(reg, "atccode", []))), ',') ++ ']',
         version: Map.get(reg, "version", []),
-        containers: convertPackage(Map.get(reg, "containers", [])),
-        product_ingredients: Map.get(reg, "product_ingredients", []),
-        files: Map.get(reg, "files", []),
+        containers: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "id",[]) ; '#{code}' end, fix(Map.get(reg, "containers", []))), ',') ++ ']',
+        files: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "id",[]) ; '#{code}' end, fix(Map.get(reg, "files", []))), ',') ++ ']',
         is_biologic: Map.get(reg, "is_biologic", []),
         legal_status_of_supply: Map.get(reg, "legal_status_of_supply", []),
         is_homeopathic: Map.get(reg, "is_homeopathic", []),
@@ -138,7 +138,12 @@ defmodule MRS.Data do
         is_original: Map.get(reg, "is_original", []),
         authorization_holder: Map.get(reg, "authorization_holder", []),
         other_countries_registration_status: Map.get(reg, "other_countries_registration_status", []),
-        authorization: Map.get(reg, "authorization", []),
+        authorization: '[' ++ :string.join(:lists.map(fn x ->
+          code = Map.get(x, "authorization_reference_number",[])
+          start = Map.get(x, "begin_date",[])
+          finish = Map.get(x, "end_date",[])
+          '#{code}:#{start}:#{finish}'
+        end, fix(Map.get(reg, "manufacturers", []))), ',') ++ ']',
         inn: Map.get(reg, "inn", []),
         is_plant: Map.get(reg, "is_plant", []),
         is_emergency_registration: Map.get(reg, "is_emergency_registration", []),
@@ -162,7 +167,10 @@ defmodule MRS.Data do
   end
 
   def writeFile(record, name) do
-      bin = :string.join(:lists.map(fn x -> '#{x}' end, tl(:erlang.tuple_to_list(record))),';') ++ '\n'
+      bin = :string.join(:lists.map(fn x ->
+#         :io.format 'debud: ~p~n', [{x,name}]
+         '#{x}' end, tl(:erlang.tuple_to_list(record))),';') ++ '\n'
+      :io.format 'writeFile: ~p~n', [name]
       :file.write_file("priv/#{name}.csv", "#{bin}", [:append, :raw, :binary])
       record
   end
