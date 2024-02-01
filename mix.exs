@@ -5,6 +5,7 @@ defmodule MRS.Mixfile do
     [
       app: :mrs,
       version: "0.12.0",
+      elixir: ">= 1.9.0",
       description: "MRS Medication Registry System (dec.gov.ua)",
       package: package(),
       deps: deps()
