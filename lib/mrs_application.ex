@@ -9,6 +9,7 @@ defmodule MRS.Application do
         MRS.Data.convertPackage()
         MRS.Data.convertManufacturer()
         MRS.Data.convertSKU()
+        MRS.Data.convertRegistry()
       end)
   end
 
