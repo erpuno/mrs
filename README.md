@@ -1,4 +1,4 @@
-# MRS: Medical Registry System
+# MRS: Medical Registry Sync
 
 [![Hex pm](http://img.shields.io/hexpm/v/mrs.svg?style=flat&x=1)](https://hex.pm/packages/mrs)
 
@@ -8,7 +8,7 @@ Online Sync with https://registry.dec.gov.ua/api/docs
 
 * Update DEC cache tables
 * Save intermediary results into CSV
-* Reconcile with internal PostgreSQL tables
+* Reconcile with external PostgreSQL tables
 
 ### Setup
 
