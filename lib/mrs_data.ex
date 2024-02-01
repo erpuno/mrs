@@ -91,8 +91,21 @@ defmodule MRS.Data do
         chemical_name: Map.get(reg, "chemical_name", []),
         number_of_doses: Map.get(reg, "number_of_doses", []),
         expiration_unit: Map.get(reg, "expiration_unit", []),
-        storage_conditions: Map.get(reg, "storage_conditions", []),
-        expiration_term_text: Map.get(reg, "expiration_term_text", []),
+
+# TEXT:
+#        undesirable_effect_symptom_condition_effect: Map.get(reg, "undesirable_effect_symptom_condition_effect", []),
+#        interaction: Map.get(reg, "interaction", []),
+#        storage_conditions: Map.get(reg, "storage_conditions", []),
+#        medicinal_form: Map.get(reg, "medicinal_form", []),
+#        special_indications: Map.get(reg, "special_indications", []),
+#        ingredient: Map.get(reg, "ingredient", []),
+#        contraindications: Map.get(reg, "contraindications", []),
+#        indications: Map.get(reg, "indications", []),
+#        additional_ingredient: Map.get(reg, "additional_ingredient", []),
+#        mechanism_of_action: Map.get(reg, "mechanism_of_action", []),
+#        dosage: Map.get(reg, "dosage", []),
+#        expiration_term_text: Map.get(reg, "expiration_term_text", []),
+
         advertisement_prohibition: Map.get(reg, "advertisement_prohibition", []),
         is_samples_of_writing: Map.get(reg, "is_samples_of_writing", []),
         child_age: Map.get(reg, "child_age", []),
@@ -104,13 +117,11 @@ defmodule MRS.Data do
         expiration_term: Map.get(reg, "expiration_term", []),
         is_for_certain_disease: Map.get(reg, "is_for_certain_disease", []),
         form_group: Map.get(reg, "form_group", []),
-        medicinal_form: Map.get(reg, "medicinal_form", []),
         origin: Map.get(reg, "origin", []),
         who_dosage_unit: Map.get(reg, "who_dosage_unit", []),
         status_description: Map.get(reg, "status_description", []),
         stop_ahead_of_schedule: Map.get(reg, "stop_ahead_of_schedule", []),
         product_type: Map.get(reg, "product_type", []),
-        interaction: Map.get(reg, "interaction", []),
         is_deleted: Map.get(reg, "is_deleted", []),
         is_psychotropic: Map.get(reg, "is_psychotropic", []),
         reason_of_changes: Map.get(reg, "reason_of_changes", []),
@@ -126,11 +137,8 @@ defmodule MRS.Data do
         is_exclusive: Map.get(reg, "is_exclusive", []),
         is_poisonous: Map.get(reg, "is_poisonous", []),
         group_of_mp: Map.get(reg, "group_of_mp", []),
-        undesirable_effect_symptom_condition_effect: Map.get(reg, "undesirable_effect_symptom_condition_effect", []),
         is_original_medicinal_product: Map.get(reg, "is_original_medicinal_product", []),
         manufacturers: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "id",[]) ; '#{code}' end, fix(Map.get(reg, "manufacturers", []))), ',') ++ ']',
-        special_indications: Map.get(reg, "special_indications", []),
-        ingredient: Map.get(reg, "ingredient", []),
         number_of_packages: Map.get(reg, "number_of_packages", []),
         created_on: Map.get(reg, "created_on", []),
         modified_on: Map.get(reg, "modified_on", []),
@@ -149,19 +157,14 @@ defmodule MRS.Data do
         is_emergency_registration: Map.get(reg, "is_emergency_registration", []),
         is_child_friendly: Map.get(reg, "is_child_friendly", []),
         national_registry: Map.get(reg, "national_registry", []),
-        contraindications: Map.get(reg, "contraindications", []),
-        indications: Map.get(reg, "indications", []),
         is_form3: Map.get(reg, "is_form3", []),
-        additional_ingredient: Map.get(reg, "additional_ingredient", []),
         need_of_prescription: Map.get(reg, "need_of_prescription", []),
         stop_ahead_of_schedule_date: Map.get(reg, "stop_ahead_of_schedule_date", []),
         max_dose_per_day_quantity: Map.get(reg, "max_dose_per_day_quantity", []),
-        mechanism_of_action: Map.get(reg, "mechanism_of_action", []),
         is_highly_potent: Map.get(reg, "is_highly_potent", []),
         who_dosage_quantity: Map.get(reg, "who_dosage_quantity", []),
         synonyms: Map.get(reg, "synonyms", []),
         external_id: Map.get(reg, "external_id", []),
-        dosage: Map.get(reg, "dosage", []),
         who_dosage_adm_route: Map.get(reg, "who_dosage_adm_route", []),
         is_orphan: Map.get(reg, "is_orphan", []))
   end
@@ -170,7 +173,6 @@ defmodule MRS.Data do
       bin = :string.join(:lists.map(fn x ->
 #         :io.format 'debud: ~p~n', [{x,name}]
          '#{x}' end, tl(:erlang.tuple_to_list(record))),';') ++ '\n'
-      :io.format 'writeFile: ~p~n', [name]
       :file.write_file("priv/#{name}.csv", "#{bin}", [:append, :raw, :binary])
       record
   end
