@@ -6,7 +6,6 @@ defmodule MRS.Data do
   #  "#{a}: Map.get(sku, \"#{a}\", []),\n" end, Map.keys hd(sku))]
 
   def fix(:null), do: []
-#  def fix([o]) when is_map(o), do: :lists.map(fn x -> Map.get(o,x,[]) end, Map.keys(o))
   def fix(x), do: x
 
   def readSKU(sku) do
@@ -92,7 +91,8 @@ defmodule MRS.Data do
         number_of_doses: Map.get(reg, "number_of_doses", []),
         expiration_unit: Map.get(reg, "expiration_unit", []),
 
-# TEXT:
+# TEXT MOVE OUT OF STREAM INTO SEPARATE TABLE(s):
+#
 #        undesirable_effect_symptom_condition_effect: Map.get(reg, "undesirable_effect_symptom_condition_effect", []),
 #        interaction: Map.get(reg, "interaction", []),
 #        storage_conditions: Map.get(reg, "storage_conditions", []),
@@ -128,9 +128,9 @@ defmodule MRS.Data do
         attached_document: Map.get(reg, "attached_document", []),
         marketing_status: Map.get(reg, "marketing_status", []),
         atc_codes: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "atc_code",[]) ; '#{code}' end, fix(Map.get(reg, "atccode", []))), ',') ++ ']',
-        version: Map.get(reg, "version", []),
         containers: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "id",[]) ; '#{code}' end, fix(Map.get(reg, "containers", []))), ',') ++ ']',
         files: '[' ++ :string.join(:lists.map(fn x -> code = Map.get(x, "id",[]) ; '#{code}' end, fix(Map.get(reg, "files", []))), ',') ++ ']',
+        version: Map.get(reg, "version", []),
         is_biologic: Map.get(reg, "is_biologic", []),
         legal_status_of_supply: Map.get(reg, "legal_status_of_supply", []),
         is_homeopathic: Map.get(reg, "is_homeopathic", []),
