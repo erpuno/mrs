@@ -151,7 +151,7 @@ defmodule MRS.Data do
           start = Map.get(x, "begin_date",[])
           finish = Map.get(x, "end_date",[])
           '#{code}:#{start}:#{finish}'
-        end, fix(Map.get(reg, "manufacturers", []))), ',') ++ ']',
+        end, fix(Map.get(reg, "authorization", []))), ',') ++ ']',
         inn: Map.get(reg, "inn", []),
         is_plant: Map.get(reg, "is_plant", []),
         is_emergency_registration: Map.get(reg, "is_emergency_registration", []),
